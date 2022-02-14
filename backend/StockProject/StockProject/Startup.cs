@@ -28,6 +28,8 @@ namespace StockProject
             });
             services.AddSingleton<IBusiness, ProductBusiness>();
             services.AddSingleton<IRepository, ProductRepository>();
+            services.AddCors(options => options.AddDefaultPolicy(
+                builder => builder.AllowAnyOrigin()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +43,7 @@ namespace StockProject
             app.UseStatusCodePages();
             app.UseMvc();
             app.UseRouting();
+            app.UseCors();
 
            
         }
