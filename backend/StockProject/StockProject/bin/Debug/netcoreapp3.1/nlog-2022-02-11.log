@@ -2,3 +2,77 @@
 2022-02-11 09:49:19.6237|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
 2022-02-11 09:49:19.6237|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
 2022-02-11 09:49:19.6384|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 15:54:59.5393|INFO|StockProject.Program|Initializing application...
+2022-02-11 15:55:01.5152|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 15:55:01.5308|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 15:55:01.5438|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 15:56:35.2633|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2022-02-11 15:58:06.6334|INFO|StockProject.Program|Initializing application...
+2022-02-11 15:58:08.3987|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 15:58:08.4063|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 15:58:08.4063|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 16:18:08.3109|INFO|StockProject.Program|Initializing application...
+2022-02-11 16:18:10.1093|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 16:18:10.1093|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 16:18:10.1093|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 16:28:42.9742|INFO|StockProject.Program|Initializing application...
+2022-02-11 16:28:45.0520|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 16:28:45.0596|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 16:28:45.0596|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 16:30:01.9087|INFO|StockProject.Program|Initializing application...
+2022-02-11 16:30:03.8118|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 16:30:03.8261|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 16:30:03.8261|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 16:43:14.3896|INFO|StockProject.Program|Initializing application...
+2022-02-11 16:43:15.9036|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 16:43:15.9036|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 16:43:15.9036|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 16:48:46.4814|INFO|StockProject.Program|Initializing application...
+2022-02-11 16:48:48.4215|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 16:48:48.4215|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 16:48:48.4393|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 16:51:13.9455|INFO|StockProject.Program|Initializing application...
+2022-02-11 16:51:15.6541|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 16:51:15.6541|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 16:51:15.6721|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 16:55:21.8002|INFO|StockProject.Program|Initializing application...
+2022-02-11 16:55:23.9698|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 16:55:23.9698|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 16:55:23.9844|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 16:58:18.8664|INFO|StockProject.Program|Initializing application...
+2022-02-11 16:58:20.6282|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 16:58:20.6282|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 16:58:20.6420|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 17:04:13.1285|INFO|StockProject.Program|Initializing application...
+2022-02-11 17:04:14.4249|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 17:04:14.4377|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 17:04:14.4377|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 17:04:57.4751|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2022-02-11 17:06:43.7595|INFO|StockProject.Program|Initializing application...
+2022-02-11 17:06:45.0136|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 17:06:45.0136|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 17:06:45.0136|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 17:07:54.2579|INFO|StockProject.Program|Initializing application...
+2022-02-11 17:07:55.8844|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 17:07:55.8920|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 17:07:55.9022|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 17:12:21.8528|INFO|StockProject.Program|Initializing application...
+2022-02-11 17:12:24.0980|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 17:12:24.0980|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 17:12:24.1132|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 17:14:22.0392|INFO|StockProject.Program|Initializing application...
+2022-02-11 17:14:24.9742|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 17:14:24.9825|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 17:14:24.9825|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 17:15:32.0182|INFO|StockProject.Program|Initializing application...
+2022-02-11 17:15:34.1367|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 17:15:34.1367|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 17:15:34.1582|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 17:16:25.5524|INFO|StockProject.Program|Initializing application...
+2022-02-11 17:16:27.7754|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 17:16:27.7837|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 17:16:27.7837|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
+2022-02-11 17:17:24.7536|INFO|StockProject.Program|Initializing application...
+2022-02-11 17:17:26.9894|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-11 17:17:26.9965|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-11 17:17:26.9965|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject
