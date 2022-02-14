@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MongoDB.Driver;
+using StockProject.Business;
+using StockProject.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,27 +15,31 @@ namespace StockProject.Controllers
     public class ProductController : ControllerBase
     {
         private readonly ILogger<ProductController> _logger;
+        private readonly IBusiness _productBusiness;
 
-        public ProductController(ILogger<ProductController> logger)
+        public ProductController(ILogger<ProductController> logger, IBusiness productBusiness)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _productBusiness = productBusiness ?? throw new ArgumentNullException(nameof(productBusiness));
+            
         }
+        
         
         
         [HttpGet]
-        public IActionResult getProducts()
+        public IEnumerable<Product> getProducts()
         {
-            return Ok(ProductDataStore.Current.Products);
+
+            return _productBusiness.GetProducts();
+
+            
         }
 
-        [HttpGet("{id}")]
-        public IActionResult getProduct(int id)
+        [HttpGet("{name}")]
+        public IActionResult getProduct(string name)
         {
 
-            var product = ProductDataStore.Current.Products.Where(p => p.Id == id).FirstOrDefault();
-
-
-            return Ok(product);
+            return Ok(_productBusiness.GetProduct(name));
         }
     }
 }
