@@ -10,14 +10,14 @@ namespace StockProject
     {
         public static ProductDataStore Current { get; } = new ProductDataStore();
 
-        public List<ProductDto> Products { get; set; }
+        public List<ProductDtoForCreation> Products { get; set; }
 
         public ProductDataStore()
         {
             
-            Products = new List<ProductDto>()
+            Products = new List<ProductDtoForCreation>()
             {
-                new ProductDto()
+                new ProductDtoForCreation()
                 {
                      Id = 1,
                      Name = "Coat",
@@ -29,7 +29,7 @@ namespace StockProject
                     
                      
                 },
-                new ProductDto()
+                new ProductDtoForCreation()
                 {
                     Id = 2,
                      Name = "Shoes",
@@ -41,7 +41,7 @@ namespace StockProject
 
 
                 },
-                new ProductDto()
+                new ProductDtoForCreation()
                 {
                     Id = 3,
                      Name = "T-shirt",
@@ -52,7 +52,7 @@ namespace StockProject
                      Quantity = 1000
 
                 },
-                new ProductDto()
+                new ProductDtoForCreation()
                 {
                     Id = 4,
                      Name = "Hat",

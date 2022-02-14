@@ -11,6 +11,6 @@ namespace StockProject.Repositories
         IEnumerable<Product> GetProducts();
         Product GetProduct(string name);
         bool ProductExists(string name);
-        
+        void AddProduct(Product product);
     }
 }

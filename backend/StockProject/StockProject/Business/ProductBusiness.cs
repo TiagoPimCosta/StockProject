@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 using StockProject.Entities;
 using StockProject.Repositories;
 using System;
@@ -26,6 +27,11 @@ namespace StockProject.Business
         public Product GetProduct(string name)
         {
             return _productRepository.GetProduct(name);
+        }
+
+        public void AddProduct(Product product)
+        {
+            _productRepository.AddProduct(product);
         }
 
     }
