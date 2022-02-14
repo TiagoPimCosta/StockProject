@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap';
   return (
     <tr key = {props.product.id}>
       <td>{props.product.name}</td>
-      <td>{props.product.color}</td>
+      <td>{props.product.colour}</td>
       <td>{props.product.price+"€"}</td>
       <td>{props.product.brand}</td>
       <td>{props.product.quantity}</td>
