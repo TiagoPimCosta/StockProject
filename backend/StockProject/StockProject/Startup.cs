@@ -20,7 +20,15 @@ namespace StockProject
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("ProductPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
             services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddControllers();
             services.AddSingleton<IMongoClient, MongoClient>(s =>
             {
                 var uri = s.GetRequiredService<IConfiguration>()["MongoUri"];
@@ -28,8 +36,7 @@ namespace StockProject
             });
             services.AddSingleton<IBusiness, ProductBusiness>();
             services.AddSingleton<IRepository, ProductRepository>();
-            services.AddCors(options => options.AddDefaultPolicy(
-                builder => builder.AllowAnyOrigin()));
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +51,7 @@ namespace StockProject
             app.UseMvc();
             app.UseRouting();
             app.UseCors();
-
+            app.UseAuthorization();
            
         }
     }

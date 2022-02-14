@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:44381";
+const baseUrl = "https://localhost:5001";
 
 //Add Product
 

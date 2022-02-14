@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using StockProject.Business;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace StockProject.Controllers
 {
+    [EnableCors("ProductPolicy")]
     [ApiController]
     [Route("api/stock")]
     public class ProductController : ControllerBase

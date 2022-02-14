@@ -40,9 +40,9 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
-            "Microsoft.AspNet.WebApi.Cors": {
+            "Microsoft.AspNetCore.Cors": {
               "target": "Package",
-              "version": "[5.2.7, )"
+              "version": "[2.2.0, )"
             },
             "MongoDB.Driver": {
               "target": "Package",
