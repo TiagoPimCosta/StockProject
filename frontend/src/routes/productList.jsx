@@ -3,22 +3,22 @@ import { useNavigate } from 'react-router-dom';
 
 import { Row, Button, Col, Table, InputGroup, FormControl} from 'react-bootstrap';
 
-import { getProducts } from "../services/data";
+import { getProducts } from "../services/productService";
 
 import Product from '../components/product';
 
 export default function ProductList() {
   let navigate = useNavigate();
 
-  const [products, setProducts] = useState(getProducts());
+  const [products, setProducts] = useState([]);
   const [nameFilter, setNameFilter] = useState("");
-  /*
+
   useEffect(()=>{
     getProducts().then((response) => {
       setProducts(response);
     });
   },[]);
-  */
+
   function nextPath(path) {
     navigate(path);
   }
@@ -31,7 +31,7 @@ export default function ProductList() {
       <h3> Product List</h3>
       <Row>
         <Col sm={8}><InputGroup className="mb-3">
-            <InputGroup.Text id="inputGroup-sizing-default" >Filter Name</InputGroup.Text>
+            <InputGroup.Text id="inputGroup-sizing-default" >Name</InputGroup.Text>
             <FormControl
               aria-label="Default"
               aria-describedby="inputGroup-sizing-default"
@@ -57,10 +57,11 @@ export default function ProductList() {
             </tr>
           </thead>
           <tbody>
-            {filteredproducts.map(product => (
-              <Product key={product.id} product = {product} nextPath={nextPath}/>
-             ))}
-
+            {
+              filteredproducts.map(product => (
+                <Product key={product.id} product = {product} nextPath={nextPath}/>
+             ))
+            }
           </tbody>
         </Table>
       </Row>
