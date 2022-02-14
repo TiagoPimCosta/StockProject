@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MongoDB.Driver;
+using StockProject.Business;
+using StockProject.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +21,13 @@ namespace StockProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(options => options.EnableEndpointRouting = false);
-            services.AddCors(options => options.AddDefaultPolicy(
-                builder => builder.AllowAnyOrigin()
-                ));
+            services.AddSingleton<IMongoClient, MongoClient>(s =>
+            {
+                var uri = s.GetRequiredService<IConfiguration>()["MongoUri"];
+                return new MongoClient(uri);
+            });
+            services.AddSingleton<IBusiness, ProductBusiness>();
+            services.AddSingleton<IRepository, ProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,7 +41,6 @@ namespace StockProject
             app.UseStatusCodePages();
             app.UseMvc();
             app.UseRouting();
-            app.UseCors();
 
            
         }
