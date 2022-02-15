@@ -17,7 +17,7 @@ export default function Stock(props) {
   const [errorMessage, setErrorMessage] = useState("")
 
   useEffect(()=>{
-    getProductDetails(params.id).then((response) => {
+    getProductDetails(params.name).then((response) => {
       setProduct(response);
     });
     setError(true);
@@ -68,6 +68,7 @@ export default function Stock(props) {
   function handleTypeChange(event){
     setType(event.target.value);
   }
+
   function submitForm(){
     if(error){
 
@@ -81,8 +82,8 @@ export default function Stock(props) {
                           </Form.Text> 
                           : null;
                     
-  const submitButton = error  ? <Button  className="right-Button" onClick={submitForm}  variant="success" disabled >Save</Button>
-                              : <Button  className="right-Button" onClick={submitForm}  variant="success">Save</Button>
+  const submitButton = error || !type ? <Button onClick={submitForm}  variant="success" disabled >Save</Button>
+                                      : <Button onClick={submitForm}  variant="success">Save</Button>
 
   return (
     <>
@@ -100,7 +101,10 @@ export default function Stock(props) {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label htmlFor="disabledTextInput">Quantity</Form.Label>
-              <Form.Control id="quantity" placeholder="Quantity"
+              <Form.Control 
+                id="quantity"
+                type="number"
+                placeholder="Quantity"
                 onChange={handleStockChange} />
             {message}
             </Form.Group>
@@ -112,7 +116,7 @@ export default function Stock(props) {
                 <option value={"Stock Out"}>Stock Out</option>
               </Form.Select>
             </Form.Group>
-            <div className="justify-content-end">
+            <div>
               {submitButton}{' '}
               <Button className="right-Button" onClick={() => nextPath('/')}  variant="danger">Cancel</Button>
             </div>
