@@ -2,13 +2,25 @@ const baseUrl = "https://localhost:5001";
 
 //Add Product
 
-export async function addProduct({id, data}) {
-  return fetch(baseUrl+"/api/stock", {
+export async function addProduct(name, colour, price, quantity, brand, description) {
+
+  var data = {
+              "name": name,
+              "colour": colour,
+              "price": price,
+              "quantity": quantity,
+              "brand": brand,
+              "description": description
+            };
+
+  await fetch("https://localhost:5001/api/stock/addProduct", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
+  }).then((response) => {
+    console.log(response);
   });
 }
 

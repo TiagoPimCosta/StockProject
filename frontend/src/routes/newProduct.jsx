@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { Row, Col, Form, Button} from 'react-bootstrap';
 
@@ -16,16 +16,12 @@ export default function NewProduct() {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
 
-  useEffect(()=>{
-    verifyForm();
-  },[name, colour, brand, price, description]);
-
   function nextPath(path) {
     navigate(path);
   }
 
-  function verifyForm(){  //Check if all inputs are filled
-    if(name && colour && brand && price && description){
+  function verifyForm(){  //Check if required inputs are filled
+    if(name && colour && brand && price){
       return true;
     }else{
       return false;
@@ -50,8 +46,13 @@ export default function NewProduct() {
     setDescription(event.target.value);
   }
 
-  const submitButton = verifyForm() ? <Button  onClick={() => nextPath('/')}  variant="success" >Save</Button>
-                                    : <Button  onClick={() => nextPath('/')}  variant="success" disabled>Save</Button>
+  async function submitForm(){
+    await addProduct(name, colour, parseFloat(price), 0, brand, description);  
+    nextPath('/');
+  };
+
+  const submitButton = verifyForm() ? <Button  onClick={() => submitForm()}  variant="success" >Save</Button>
+                                    : <Button  variant="success" disabled>Save</Button>
 
   return (
     <>
@@ -63,11 +64,11 @@ export default function NewProduct() {
       <Row >
         <Col md={{ span: 6, offset: 3 }}>
           <Form>
-            <FormField inputName={"Name"} text={name} method={handleNameChange}/>
-            <FormField inputName={"Colour"} text={colour} method={handleColourChange}/>
-            <FormField inputName={"Price"} text={price} method={handlePriceChange}/>
-            <FormField inputName={"Brand"} text={brand} method={handleBrandChange}/>
-            <FormField inputName={"Description"} text={description} method={handleDescriptionChange}/>
+            <FormField type={"text"} inputName={"Name"} text={name} method={handleNameChange}/>
+            <FormField type={"text"} inputName={"Colour"} text={colour} method={handleColourChange}/>
+            <FormField type={"number"} inputName={"Price"} text={price} method={handlePriceChange}/>
+            <FormField type={"text"} inputName={"Brand"} text={brand} method={handleBrandChange}/>
+            <FormField type={"text"} inputName={"Description"} text={description} method={handleDescriptionChange}/>
             <div>
               { submitButton }{' '}
               <Button  onClick={() => nextPath('/')}  variant="danger">Cancel</Button>
