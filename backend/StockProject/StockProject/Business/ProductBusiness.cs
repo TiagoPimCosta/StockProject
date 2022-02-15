@@ -23,14 +23,14 @@ namespace StockProject.Business
         }
 
 
-        public IEnumerable<Product> GetProducts()
+        public IEnumerable<ProductDto> GetProducts()
         {
 
             var products = _productRepository.GetProducts();
 
             
 
-            return (IEnumerable<Product>)_mapper.Map<IEnumerable<ProductDto>>(products);
+            return _mapper.Map<IEnumerable<ProductDto>>(products);
         }
 
         public ProductDto GetProduct(string name)
@@ -42,9 +42,13 @@ namespace StockProject.Business
             return _mapper.Map<ProductDto>(product);
         }
 
-        public void AddProduct(Product product)
+        public ProductDto AddProduct(ProductDto productDto)
         {
+            var product = _mapper.Map<Product>(productDto);
+            
             _productRepository.AddProduct(product);
+
+            return _mapper.Map<ProductDto>(product);
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using StockProject.Entities;
 using StockProject.Models;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,10 @@ namespace StockProject.Profiles
     {
         public ProductProfile()
         {
-            CreateMap<Entities.Product, ProductDtoForCreation>();
-            CreateMap<Entities.Product, ProductDto>();
-            CreateMap<ProductDtoForCreation, Entities.Product>();
-            
+            CreateMap<Product, ProductDtoForCreation>();
+            CreateMap<Product, ProductDto>();
+            CreateMap<ProductDtoForCreation, Product>();
+            CreateMap<ProductDto, Product>();
         }
     }
 }

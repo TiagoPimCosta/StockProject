@@ -10,9 +10,9 @@ namespace StockProject.Business
 {
     public interface IBusiness
     {
-        IEnumerable<Product> GetProducts();
+        IEnumerable<ProductDto> GetProducts();
         ProductDto GetProduct(string name);
-        void AddProduct(Product product);
+        ProductDto AddProduct(ProductDto productDto);
 
 
     }
