@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react'
 
 import { Form } from 'react-bootstrap';
 
-export default function FormField({inputName, text, method}) {
+export default function FormField({type, inputName, text, method}) {
   
   const [error, setError] = useState("");
+  const [firstTime, setFirstTime] = useState(true);
 
   useEffect(()=>{
-    verifyInput();
+    if(firstTime){
+      setFirstTime(false);
+    }else{
+      verifyInput();
+    }
   },[text])
 
   function verifyInput(){
@@ -24,6 +29,7 @@ export default function FormField({inputName, text, method}) {
     <Form.Group className="mb-3">
       <Form.Label htmlFor="inputPassword5">{inputName}</Form.Label>
       <Form.Control
+        type={type}
         id={text}
         onChange={method}
       />
