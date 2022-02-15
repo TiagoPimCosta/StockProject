@@ -41,3 +41,8 @@ C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject\bin\Deb
 C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject\bin\Debug\netcoreapp3.1\runtimes\linux\native\libmongocrypt.so
 C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject\bin\Debug\netcoreapp3.1\runtimes\osx\native\libmongocrypt.dylib
 C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject\bin\Debug\netcoreapp3.1\runtimes\win\native\mongocrypt.dll
+C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+C:\Users\rsilvaca\Desktop\StockProject\backend\StockProject\StockProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll

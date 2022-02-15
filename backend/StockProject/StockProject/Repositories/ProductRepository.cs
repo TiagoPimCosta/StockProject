@@ -2,6 +2,7 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
 using StockProject.Entities;
+using StockProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,11 @@ namespace StockProject.Repositories
 
             return product;
 
+        }
+
+        public void AddProduct(Product product)
+        {
+            ProductCollection.InsertOne(product);
         }
 
         public bool ProductExists(string name)
