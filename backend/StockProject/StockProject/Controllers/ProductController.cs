@@ -49,13 +49,15 @@ namespace StockProject.Controllers
             return Ok(_productBusiness.GetProduct(name));
         }
 
-        [HttpPost]
+        [HttpPost("addProduct")]
         public IActionResult CreateProduct(ProductDto productDto)
         {
             if(_productBusiness.AddProduct(productDto) == null)
             {
                 return NotFound();
             }
+
+            _logger.LogInformation($"{productDto.CreationTime.TimeOfDay}");
             
             return Ok(_productBusiness.AddProduct(productDto));
         }

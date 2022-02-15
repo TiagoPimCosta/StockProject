@@ -12,9 +12,7 @@ namespace StockProject.Profiles
     {
         public ProductProfile()
         {
-            CreateMap<Product, ProductDtoForCreation>();
             CreateMap<Product, ProductDto>();
-            CreateMap<ProductDtoForCreation, Product>();
             CreateMap<ProductDto, Product>();
         }
     }

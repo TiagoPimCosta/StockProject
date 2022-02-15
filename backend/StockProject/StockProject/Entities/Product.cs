@@ -23,6 +23,7 @@ namespace StockProject.Entities
         public string Description { get; set; }
         [BsonElement("colour")]
         public string Colour { get; set; }
-        
+        public DateTime CreationTime { get; set; }
+
     }
 }

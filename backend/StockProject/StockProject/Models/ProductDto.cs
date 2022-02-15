@@ -18,5 +18,6 @@ namespace StockProject.Models
         public string Description { get; set; }
         
         public string Colour { get; set; }
+        public DateTime CreationTime { get; set; }
     }
 }

@@ -44,8 +44,11 @@ namespace StockProject.Business
 
         public ProductDto AddProduct(ProductDto productDto)
         {
+            productDto.Quantity = 0;
+            
             var product = _mapper.Map<Product>(productDto);
             
+
             _productRepository.AddProduct(product);
 
             return _mapper.Map<ProductDto>(product);
