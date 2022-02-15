@@ -5,7 +5,7 @@ import { Row, Button, Col, Table, InputGroup, FormControl} from 'react-bootstrap
 
 import { getProducts } from "../services/productService";
 
-import Product from '../components/product';
+import Product from '../components/Product';
 
 export default function ProductList() {
   let navigate = useNavigate();
@@ -49,7 +49,7 @@ export default function ProductList() {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Color</th>
+              <th>Colour</th>
               <th>Price</th>
               <th>Brand</th>
               <th>Quantity</th>
@@ -58,8 +58,8 @@ export default function ProductList() {
           </thead>
           <tbody>
             {
-              filteredproducts.map(product => (
-                <Product key={product.id} product = {product} nextPath={nextPath}/>
+              filteredproducts.map((product, idx) => (
+                <Product key={idx} product = {product} nextPath={nextPath}/>
              ))
             }
           </tbody>
