@@ -2,14 +2,10 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using MongoDB.Driver;
 using StockProject.Business;
-using StockProject.Entities;
 using StockProject.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace StockProject.Controllers
 {
@@ -22,7 +18,7 @@ namespace StockProject.Controllers
         private readonly IBusiness _productBusiness;
         
 
-        public ProductController(ILogger<ProductController> logger, IBusiness productBusiness, IMapper mapper)
+        public ProductController(ILogger<ProductController> logger, IBusiness productBusiness)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _productBusiness = productBusiness ?? throw new ArgumentNullException(nameof(productBusiness));
@@ -56,6 +52,11 @@ namespace StockProject.Controllers
         [HttpPost]
         public IActionResult CreateProduct(ProductDto productDto)
         {
+            if(_productBusiness.AddProduct(productDto) == null)
+            {
+                return NotFound();
+            }
+            
             return Ok(_productBusiness.AddProduct(productDto));
         }
 
