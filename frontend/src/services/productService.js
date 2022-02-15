@@ -1,7 +1,7 @@
-const baseUrl = "https://localhost:5001";
+const baseUrl = "https://localhost:5001/api/stock";
 
-//Add Product
-
+// Add Product
+// Done and Tested
 export async function addProduct(name, colour, price, quantity, brand, description) {
 
   var data = {
@@ -13,7 +13,7 @@ export async function addProduct(name, colour, price, quantity, brand, descripti
               "description": description
             };
 
-  await fetch("https://localhost:5001/api/stock/addProduct", {
+  await fetch(baseUrl + "/addProduct", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -23,46 +23,56 @@ export async function addProduct(name, colour, price, quantity, brand, descripti
     console.log(response);
   });
 }
-
-//Get Product
-//Drop down list
-
-//Get Product Details
-
+// Get Product Details
+// Done and Tested
 export async function getProductDetails(name) {
-  const response = await fetch(baseUrl+"/api/stock/" + name);
+  const response = await fetch(baseUrl + "/" + name);
   if (response.ok) return response.json();
   throw response;
 }
 
-//Get All Products
-
+// Get All Products
+// Done and Tested
 export async function getProducts() {
-  const response = await fetch(baseUrl+"/api/stock");
+  const response = await fetch(baseUrl);
   if (response.ok) return response.json();
   throw response;
 }
 
-//StockIn
+// StockIn
+// Done
+export async function stockIn(name, quantity) {
+  var data = {
+    "name": name,
+    "quantity": quantity
+  };
 
-export async function stockIn({id, data}) {
-  return fetch(baseUrl + "/api/stockIn" + id, {
+  await fetch(baseUrl + "/in", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
+  }).then((response) => {
+    console.log(response);
   });
 }
 
-//StockOut
+// StockOut
+// Done
+export async function stockOut(name, quantity) {
+  var data = {
+    "name": name,
+    "quantity": quantity
+  };
 
-export async function stockOut({id, data}) {
-  return fetch(baseUrl + "/api/stockOut" + id, {
+  await fetch(baseUrl + "/out", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
+  }).then((response) => {
+    console.log(response);
   });
 }

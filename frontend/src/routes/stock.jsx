@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Row, Col, Form, Button} from 'react-bootstrap';
 
-import { getProductDetails } from "../services/productService";
+import { getProductDetails, stockIn, stockOut} from "../services/productService";
 
 export default function Stock(props) {
 
@@ -16,7 +16,7 @@ export default function Stock(props) {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("")
 
-  useEffect(()=>{
+  useEffect(()=>{ // UseEffect to fetch product details
     getProductDetails(params.name).then((response) => {
       setProduct(response);
     });
@@ -24,7 +24,7 @@ export default function Stock(props) {
     validateStock();
   },[]);
 
-  useEffect(()=>{
+  useEffect(()=>{ // UseEffect to validateStock
     validateStock();
   },[type,stock]);
 
@@ -32,7 +32,7 @@ export default function Stock(props) {
     navigate(path);
   }
  
-  function isValue(value){
+  function isValue(value){ // Return true if value param is a Number
     if (typeof value !== 'string') {
       return false;
     }
@@ -70,10 +70,14 @@ export default function Stock(props) {
   }
 
   function submitForm(){
-    if(error){
-
-    }else{
-      nextPath('/')
+    if(!error){
+      if(type === "Stock In"){
+        stockIn(product.name,stock);
+        nextPath('/');
+      }else {
+        stockOut(product.name,stock);
+        nextPath('/');
+      }
     }
   }
 
@@ -82,7 +86,7 @@ export default function Stock(props) {
                           </Form.Text> 
                           : null;
                     
-  const submitButton = error || !type ? <Button onClick={submitForm}  variant="success" disabled >Save</Button>
+  const submitButton = error || !type ? <Button variant="success" disabled >Save</Button>
                                       : <Button onClick={submitForm}  variant="success">Save</Button>
 
   return (
@@ -100,9 +104,8 @@ export default function Stock(props) {
               <Form.Control id="product" placeholder={product.name} disabled />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label htmlFor="disabledTextInput">Quantity</Form.Label>
-              <Form.Control 
-                id="quantity"
+              <Form.Label >Quantity</Form.Label>
+              <Form.Control
                 type="number"
                 placeholder="Quantity"
                 onChange={handleStockChange} />

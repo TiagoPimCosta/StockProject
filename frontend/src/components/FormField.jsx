@@ -27,7 +27,7 @@ export default function FormField({type, inputName, text, method}) {
 
   return (
     <Form.Group className="mb-3">
-      <Form.Label htmlFor="inputPassword5">{inputName}</Form.Label>
+      <Form.Label >{inputName}</Form.Label>
       <Form.Control
         type={type}
         id={text}
