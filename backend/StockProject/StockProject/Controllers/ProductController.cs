@@ -20,13 +20,13 @@ namespace StockProject.Controllers
     {
         private readonly ILogger<ProductController> _logger;
         private readonly IBusiness _productBusiness;
-        private readonly IMapper _mapper;
+        
 
         public ProductController(ILogger<ProductController> logger, IBusiness productBusiness, IMapper mapper)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _productBusiness = productBusiness ?? throw new ArgumentNullException(nameof(productBusiness));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            
         }
         
         
@@ -34,37 +34,18 @@ namespace StockProject.Controllers
         [HttpGet]
         public IActionResult GetProducts()
         {
-
-            var products = _productBusiness.GetProducts();
-
-            if(products == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(_mapper.Map<IEnumerable<ProductDto>>(products));
+            return Ok(_productBusiness.GetProducts());
         }
 
         [HttpGet("{name}")]
         public IActionResult GetProduct(string name)
         {
-            var product = _productBusiness.GetProduct(name);
-
-            if(product == null)
-            {
-                return NotFound();
-            }
-            
-            return Ok(_mapper.Map<ProductDto>(product));
+            return Ok(_productBusiness.GetProduct(name));
         }
 
         [HttpPost]
         public IActionResult CreateProduct(ProductDtoForCreation productDto)
         {
-            var product = _mapper.Map<Product>(productDto);
-            
-            _productBusiness.AddProduct(product);
-
             return Ok();
         }
 

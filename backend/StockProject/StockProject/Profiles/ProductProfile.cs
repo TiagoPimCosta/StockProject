@@ -14,6 +14,7 @@ namespace StockProject.Profiles
             CreateMap<Entities.Product, ProductDtoForCreation>();
             CreateMap<Entities.Product, ProductDto>();
             CreateMap<ProductDtoForCreation, Entities.Product>();
+            
         }
     }
 }
