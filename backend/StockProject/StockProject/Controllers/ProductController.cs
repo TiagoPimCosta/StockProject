@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using MongoDB.Driver;
 using StockProject.Business;
-using StockProject.Entities;
+using StockProject.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace StockProject.Controllers
 {
@@ -18,6 +16,7 @@ namespace StockProject.Controllers
     {
         private readonly ILogger<ProductController> _logger;
         private readonly IBusiness _productBusiness;
+        
 
         public ProductController(ILogger<ProductController> logger, IBusiness productBusiness)
         {
@@ -29,19 +28,44 @@ namespace StockProject.Controllers
         
         
         [HttpGet]
-        public IEnumerable<Product> getProducts()
+        public IActionResult GetProducts()
         {
-
-            return _productBusiness.GetProducts();
-
+            if(_productBusiness.GetProducts() == null)
+            {
+                return NotFound();
+            }
             
+            return Ok(_productBusiness.GetProducts());
         }
 
         [HttpGet("{name}")]
-        public IActionResult getProduct(string name)
+        public IActionResult GetProduct(string name)
         {
-
+            if(_productBusiness.GetProduct(name) == null)
+            {
+                return NotFound();
+            }
+            
             return Ok(_productBusiness.GetProduct(name));
+        }
+
+        [HttpPost("addProduct")]
+        public IActionResult CreateProduct(ProductDto productDto)
+        {
+            if(_productBusiness.AddProduct(productDto) == null)
+            {
+                return NotFound();
+            }
+
+            _logger.LogInformation($"{productDto.CreationTime.TimeOfDay}");
+            
+            return Ok(_productBusiness.AddProduct(productDto));
+        }
+
+        [HttpPut("{name}")]
+        public IActionResult UpdateProduct()
+        {
+            return Ok();
         }
     }
 }

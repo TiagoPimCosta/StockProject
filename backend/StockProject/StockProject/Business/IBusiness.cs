@@ -1,4 +1,6 @@
-﻿using StockProject.Entities;
+﻿using Microsoft.AspNetCore.Mvc;
+using StockProject.Entities;
+using StockProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +10,9 @@ namespace StockProject.Business
 {
     public interface IBusiness
     {
-        IEnumerable<Product> GetProducts();
-        Product GetProduct(string name);
+        IEnumerable<ProductDto> GetProducts();
+        ProductDto GetProduct(string name);
+        ProductDto AddProduct(ProductDto productDto);
 
 
     }

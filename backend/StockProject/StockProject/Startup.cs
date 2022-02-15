@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace StockProject
 {
     public class Startup
@@ -36,7 +37,7 @@ namespace StockProject
             });
             services.AddSingleton<IBusiness, ProductBusiness>();
             services.AddSingleton<IRepository, ProductRepository>();
-           
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
