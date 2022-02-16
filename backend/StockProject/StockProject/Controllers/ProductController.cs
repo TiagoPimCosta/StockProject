@@ -16,6 +16,7 @@ namespace StockProject.Controllers
     {
         private readonly ILogger<ProductController> _logger;
         private readonly IBusiness _productBusiness;
+
         
 
         public ProductController(ILogger<ProductController> logger, IBusiness productBusiness)
@@ -62,9 +63,17 @@ namespace StockProject.Controllers
             return Ok(_productBusiness.AddProduct(productDto));
         }
 
-        [HttpPut("{name}")]
-        public IActionResult UpdateProduct()
+        [HttpPut("in")]
+        public IActionResult UpdateStockInProduct(ProductDto productDto)
         {
+            if(_productBusiness.StockInProduct(productDto) == null)
+            {
+                return NotFound();
+            }
+
+            //_logger.LogInformation($"{productDto.CreationTime.TimeOfDay}");
+
+            //return Ok(_productBusiness.StockInProduct(productDto));
             return Ok();
         }
     }

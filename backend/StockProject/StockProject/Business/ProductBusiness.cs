@@ -54,5 +54,18 @@ namespace StockProject.Business
             return _mapper.Map<ProductDto>(product);
         }
 
+        public ProductDto StockInProduct(ProductDto productDto)
+        {
+            var oldQuantity = _productRepository.GetProduct(productDto.Name).Quantity;
+
+            productDto.Quantity += oldQuantity;
+            
+            var product = _mapper.Map<Product>(productDto);
+
+            _productRepository.StockInProduct(product);
+
+            return _mapper.Map<ProductDto>(product);
+        }
+
     }
 }

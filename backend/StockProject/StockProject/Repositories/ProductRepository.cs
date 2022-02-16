@@ -12,6 +12,7 @@ namespace StockProject.Repositories
 {
     public class ProductRepository : IRepository
     {
+
         public IMongoCollection<Product> ProductCollection { get; set; }
 
         public ProductRepository(IMongoClient client)
@@ -39,6 +40,16 @@ namespace StockProject.Repositories
         public void AddProduct(Product product)
         {
             ProductCollection.InsertOne(product);
+        }
+
+        public void StockInProduct(Product product)
+        {
+            var filter = Builders<Product>.Filter.Eq(product => product.Name, product.Name);
+            var update = Builders<Product>.Update.Set(product => product.Quantity, product.Quantity);
+            ProductCollection.UpdateOne(filter, update);
+
+
+            //ProductCollection.Find(p => p.Name == product.Name).UpdateOne(product.Quantity);
         }
 
         public bool ProductExists(string name)
