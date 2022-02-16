@@ -56,14 +56,14 @@
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest("validate....");
+                    return BadRequest();
                 }
 
                 _productBusiness.AddProduct(productDto);
 
-                _logger.LogInformation($"{productDto.CreationTime.TimeOfDay}");
+                _logger.LogInformation($"Product: {productDto.Name} was added. {DateTime.Now}");
 
-                return Ok();
+                return Ok("Product added successfully.");
             }
             catch (Exception ex)
             {
