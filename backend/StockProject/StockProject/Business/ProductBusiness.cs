@@ -28,7 +28,7 @@ namespace StockProject.Business
 
             var products = _productRepository.GetProducts();
 
-            
+
 
             return _mapper.Map<IEnumerable<ProductDto>>(products);
         }
@@ -37,35 +37,45 @@ namespace StockProject.Business
         {
             var product = _productRepository.GetProduct(name);
 
-            
+
 
             return _mapper.Map<ProductDto>(product);
         }
 
-        public ProductDto AddProduct(ProductDto productDto)
+        public void AddProduct(ProductDto productDto)
         {
+            var product = _productRepository.GetProduct(productDto.Name);
+
+            if (product != null)
+            {
+                throw new Exception("Product exists.");
+            }
+
             productDto.Quantity = 0;
-            
-            var product = _mapper.Map<Product>(productDto);
-            
+            var newProduct = _mapper.Map<Product>(productDto);
 
-            _productRepository.AddProduct(product);
-
-            return _mapper.Map<ProductDto>(product);
+            _productRepository.AddProduct(newProduct);
         }
 
-        public ProductDto StockInProduct(ProductDto productDto)
+        public void UpdateStockProduct(UpdateStockProductDto updateStock)
         {
-            var oldQuantity = _productRepository.GetProduct(productDto.Name).Quantity;
+            var product = _productRepository.GetProduct(updateStock.Name);
 
-            productDto.Quantity += oldQuantity;
-            
-            var product = _mapper.Map<Product>(productDto);
+            if (updateStock.StockIn)
+            {
+                product.Quantity += updateStock.Quantity;
+            }
+            else
+            {
+                product.Quantity -= updateStock.Quantity;
 
-            _productRepository.StockInProduct(product);
+                if (product.Quantity < 0)
+                {
+                    throw new Exception("Quantity is not allow.");
+                }
+            }
 
-            return _mapper.Map<ProductDto>(product);
+            _productRepository.UpdateStockProduct(product);
         }
-
     }
 }

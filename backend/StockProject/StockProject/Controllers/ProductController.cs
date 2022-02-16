@@ -1,14 +1,13 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using StockProject.Business;
-using StockProject.Models;
-using System;
-
-
-namespace StockProject.Controllers
+﻿namespace StockProject.Controllers
 {
+    using Microsoft.AspNetCore.Cors;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+    using StockProject.Business;
+    using StockProject.Models;
+    using System;
+    using System.Linq;
+
     [EnableCors("ProductPolicy")]
     [ApiController]
     [Route("api/stock")]
@@ -17,8 +16,6 @@ namespace StockProject.Controllers
         private readonly ILogger<ProductController> _logger;
         private readonly IBusiness _productBusiness;
 
-        
-
         public ProductController(ILogger<ProductController> logger, IBusiness productBusiness)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -26,55 +23,67 @@ namespace StockProject.Controllers
             
         }
         
-        
-        
         [HttpGet]
         public IActionResult GetProducts()
         {
-            if(_productBusiness.GetProducts() == null)
+            var productList = _productBusiness.GetProducts();
+
+            if (!productList.Any())
             {
                 return NotFound();
             }
-            
-            return Ok(_productBusiness.GetProducts());
+
+            return Ok(productList);
         }
 
         [HttpGet("{name}")]
         public IActionResult GetProduct(string name)
         {
-            if(_productBusiness.GetProduct(name) == null)
+            var product = _productBusiness.GetProduct(name);
+
+            if(product == null)
             {
                 return NotFound();
             }
             
-            return Ok(_productBusiness.GetProduct(name));
+            return Ok(product);
         }
 
         [HttpPost("addProduct")]
         public IActionResult CreateProduct(ProductDto productDto)
         {
-            if(_productBusiness.AddProduct(productDto) == null)
+            try
             {
-                return NotFound();
-            }
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("validate....");
+                }
 
-            _logger.LogInformation($"{productDto.CreationTime.TimeOfDay}");
-            
-            return Ok(_productBusiness.AddProduct(productDto));
+                _productBusiness.AddProduct(productDto);
+
+                _logger.LogInformation($"{productDto.CreationTime.TimeOfDay}");
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        [HttpPut("in")]
-        public IActionResult UpdateStockInProduct(ProductDto productDto)
+        [HttpPut("updateStock")]
+        public IActionResult UpdateStockProduct(UpdateStockProductDto updateStock)
         {
-            if(_productBusiness.StockInProduct(productDto) == null)
+            try
             {
-                return NotFound();
+                _productBusiness.UpdateStockProduct(updateStock);
+
+                return Ok();
             }
-
-            //_logger.LogInformation($"{productDto.CreationTime.TimeOfDay}");
-
-            //return Ok(_productBusiness.StockInProduct(productDto));
-            return Ok();
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

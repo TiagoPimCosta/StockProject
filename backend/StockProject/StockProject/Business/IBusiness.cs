@@ -12,8 +12,7 @@ namespace StockProject.Business
     {
         IEnumerable<ProductDto> GetProducts();
         ProductDto GetProduct(string name);
-        ProductDto AddProduct(ProductDto productDto);
-        ProductDto StockInProduct(ProductDto productDto);
-
+        void AddProduct(ProductDto productDto);
+        void UpdateStockProduct(UpdateStockProductDto updateStock);
     }
 }
