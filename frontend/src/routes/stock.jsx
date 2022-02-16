@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 
-import { getProductDetails, stockIn, stockOut } from "../services/productService";
+import { getProductDetails, updateStock } from "../services/productService";
 
 export default function Stock(props) {
 
@@ -72,10 +72,10 @@ export default function Stock(props) {
   function submitForm() {
     if (!error) {
       if (type === "Stock In") {
-        stockIn(product.name, stock);
+        updateStock(product.name, stock, true);
         nextPath('/');
       } else {
-        stockOut(product.name, stock);
+        updateStock(product.name, stock, false);
         nextPath('/');
       }
     }

@@ -39,34 +39,16 @@ export async function getProducts() {
   throw response;
 }
 
-// StockIn
+// StockIn StockOut
 // Done
-export async function stockIn(name, quantity) {
+export async function updateStock(name, quantity, stockIn) {
   var data = {
     "name": name,
-    "quantity": quantity
+    "quantity": quantity,
+    "StockIn": stockIn
   };
 
-  await fetch(baseUrl + "/in", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  }).then((response) => {
-    console.log(response);
-  });
-}
-
-// StockOut
-// Done
-export async function stockOut(name, quantity) {
-  var data = {
-    "name": name,
-    "quantity": quantity
-  };
-
-  await fetch(baseUrl + "/out", {
+  await fetch(baseUrl + "/updateStock", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
