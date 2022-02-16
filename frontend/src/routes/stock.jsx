@@ -72,7 +72,7 @@ export default function Stock(props) {
   function submitForm() {
     if (!error) {
       if (type === "Stock In") {
-        updateStock(product.name, stock, true);
+	updateStock(product.name, stock, true);
         nextPath('/');
       } else {
         updateStock(product.name, stock, false);
