@@ -42,7 +42,7 @@ namespace StockProject.Repositories
             ProductCollection.InsertOne(product);
         }
 
-        public void StockInProduct(Product product)
+        public void UpdateStockProduct(Product product)
         {
             var filter = Builders<Product>.Filter.Eq(product => product.Name, product.Name);
             var update = Builders<Product>.Update.Set(product => product.Quantity, product.Quantity);

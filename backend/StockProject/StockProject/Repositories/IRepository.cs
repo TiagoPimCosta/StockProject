@@ -12,6 +12,6 @@ namespace StockProject.Repositories
         Product GetProduct(string name);
         bool ProductExists(string name);
         void AddProduct(Product product);
-        void StockInProduct(Product product);
+        void UpdateStockProduct(Product product);
     }
 }
