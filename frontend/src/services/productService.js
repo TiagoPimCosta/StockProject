@@ -40,7 +40,7 @@ export async function getProducts() {
 }
 
 // StockIn StockOut
-// Done
+// Done and Tested
 export async function updateStock(name, quantity, stockIn) {
 
 	var data = {
@@ -49,7 +49,6 @@ export async function updateStock(name, quantity, stockIn) {
     "StockIn": stockIn
   };
 	
-
   await fetch(baseUrl + "/updateStock", {
     method: "PUT",
     headers: {
