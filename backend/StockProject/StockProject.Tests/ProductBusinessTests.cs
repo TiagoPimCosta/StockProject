@@ -32,7 +32,7 @@ namespace StockProject.Tests
         {
             //Arrange
             
-            var productList = this.fixture.CreateMany<Product>(10);
+            var productList = this.fixture.Build<Product>().Without(p => p.Id).CreateMany(10);
 
             /*var product = this.fixture.Create<Product>();
             var productName = this.fixture.Create<string>();
@@ -42,17 +42,19 @@ namespace StockProject.Tests
             var productL = this.fixture.Build<Product>().Without(p => p.Description).Without(p => p.Brand).With(p => p.Price, 50).CreateMany(10);*/
 
             //It.IsAny<IEnumerable<Product>>());
-            
             this.productRepositoryMock.Setup(x => x.GetProducts()).Returns(productList);
-            
 
             //Action
             var result = productBusiness.GetProducts();
 
 
             //Assert
-            
-            Assert.Equal(result.Count(), productList.Count());
+            Assert.Equal(productList.Count(), result.Count());
+
+            this.productRepositoryMock.Verify(
+                x => x.GetProducts(), 
+                Times.Once
+                );
         }
 
         [Fact]
@@ -82,10 +84,53 @@ namespace StockProject.Tests
             
 
             //Action
-            var result = productBusiness.AddProduct(productDto);
+            //var result = productBusiness.AddProduct(productDto);
 
             //Assert
-            Assert.Equal(result,productDto); 
+            //Assert.Equal(result,productDto); 
+        }
+
+        [Fact]
+        public void UpdateStockProduct_StockIn_Success()
+        {
+            //Arrange
+            var nameP = this.fixture.Create<string>();
+            var updateStockProductDto = this.fixture.Build<UpdateStockProductDto>().With(p => p.Name, nameP).Create();
+            var product = this.fixture.Build<Product>().Without(p => p.Id).With(p => p.Name, nameP).Create();
+
+            var quantityExp = product.Quantity + updateStockProductDto.Quantity;
+
+            this.productRepositoryMock.Setup(x => x.GetProduct(updateStockProductDto.Name)).Returns(product);
+
+            this.productRepositoryMock.Setup(x => x.UpdateStockProduct(product));
+
+            //Action
+            this.productBusiness.UpdateStockProduct(updateStockProductDto);
+
+            //Assert
+            this.productRepositoryMock.Verify(
+                x => x.GetProduct(updateStockProductDto.Name),
+                Times.Once
+                );
+
+            //this.productRepositoryMock.Verify(
+            //    x => x.GetProduct(It.IsAny<string>()),
+            //    Times.Once
+            //    );
+
+            //this.productRepositoryMock.Verify(
+            //    x => x.GetProduct(It.Is<string>(a => a == updateStockProductDto.Name)),
+            //    Times.Exactly(1)
+            //    );
+
+            this.productRepositoryMock.Verify(
+                x => x.UpdateStockProduct(It.Is<Product>(p => 
+                p.Name == product.Name &&
+                p.Quantity == quantityExp &&
+                p.Price == product.Price
+                )),
+                Times.Once
+                );
         }
     }
 }
