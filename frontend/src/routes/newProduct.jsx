@@ -51,8 +51,8 @@ export default function NewProduct() {
     nextPath('/');
   };
 
-  const submitButton = verifyForm() ? <Button  onClick={() => submitForm()}  variant="success" >Save</Button>
-                                    : <Button  variant="success" disabled>Save</Button>
+  const submitButton = verifyForm() ? <Button  onClick={() => submitForm()}  variant="success" data-testid="submitButton">Save</Button>
+                                    : <Button  variant="success" data-testid="submitButton" disabled>Save</Button>
 
   return (
     <>

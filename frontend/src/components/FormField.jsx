@@ -27,8 +27,9 @@ export default function FormField({type, inputName, text, method}) {
 
   return (
     <Form.Group className="mb-3">
-      <Form.Label >{inputName}</Form.Label>
+      <Form.Label data-testid="label">{inputName}</Form.Label>
       <Form.Control
+        data-testid="customInput"
         type={type}
         id={text}
         onChange={method}

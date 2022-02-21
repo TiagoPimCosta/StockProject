@@ -42,7 +42,6 @@ export default function Stock(props) {
     if (Number.isInteger(num) && num > 0) {
       return true;
     }
-    console.log("");
     return false;
   }
 
@@ -64,7 +63,6 @@ export default function Stock(props) {
   function handleStockChange(event) {
     setStock(event.target.value);
   }
-
   function handleTypeChange(event) {
     setType(event.target.value);
   }
@@ -82,12 +80,12 @@ export default function Stock(props) {
   }
 
   const message = error ? <Form.Text className="text-error">
-    {errorMessage}
-  </Form.Text>
-    : null;
+                            {errorMessage}
+                          </Form.Text>
+                        : null;
 
-  const submitButton = error || !type ? <Button variant="success" disabled >Save</Button>
-    : <Button onClick={submitForm} variant="success">Save</Button>
+  const submitButton = error || !type ? <Button variant="success" disabled data-testid="submitButton">Save</Button>
+                                      : <Button onClick={submitForm} variant="success" data-testid="submitButton">Save</Button>
 
   return (
     <>
@@ -106,6 +104,7 @@ export default function Stock(props) {
             <Form.Group className="mb-3">
               <Form.Label >Quantity</Form.Label>
               <Form.Control
+                data-testid="quantityInput"
                 type="number"
                 placeholder="Quantity"
                 onChange={handleStockChange} />
@@ -113,7 +112,7 @@ export default function Stock(props) {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Type</Form.Label>
-              <Form.Select onChange={handleTypeChange}>
+              <Form.Select onChange={handleTypeChange} data-testid="stockSelect">
                 <option value={""}>Select...</option>
                 <option value={"Stock In"}>Stock In</option>
                 <option value={"Stock Out"}>Stock Out</option>
