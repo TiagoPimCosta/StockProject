@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import { Row, Col, Form, Button} from 'react-bootstrap';
@@ -6,19 +5,13 @@ import { Row, Col, Form, Button} from 'react-bootstrap';
 import { addProduct } from '../services/productService';
 import FormField from '../components/FormField';
 
-export default function NewProduct() {
-  
-  let navigate = useNavigate();
+export default function NewProduct({nextPath}) {
 
   const [name, setName] = useState("");
   const [colour, setColour] = useState("");
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-
-  function nextPath(path) {
-    navigate(path);
-  }
 
   function verifyForm(){  //Check if required inputs are filled
     if(name && colour && brand && price){

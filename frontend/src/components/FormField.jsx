@@ -1,19 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import { Form } from 'react-bootstrap';
 
 export default function FormField({type, inputName, text, method}) {
   
   const [error, setError] = useState("");
-  const [firstTime, setFirstTime] = useState(true);
-
-  useEffect(()=>{
-    if(firstTime){
-      setFirstTime(false);
-    }else{
-      verifyInput();
-    }
-  },[text])
 
   function verifyInput(){
     if(!text.replace(/\s+/g, '')){
@@ -22,8 +13,13 @@ export default function FormField({type, inputName, text, method}) {
       setError("");
     }
   }
-
+  
   const errorMessage = error ? <Form.Text className="text-error"> {error} </Form.Text> : null;
+
+  function handleInputChange(event){
+    method(event);
+    verifyInput();
+  }
 
   return (
     <Form.Group className="mb-3">
@@ -32,7 +28,7 @@ export default function FormField({type, inputName, text, method}) {
         data-testid="customInput"
         type={type}
         id={text}
-        onChange={method}
+        onChange={handleInputChange}
       />
       { errorMessage }
     </Form.Group>

@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 
 import { getProductDetails, updateStock } from "../services/productService";
 
-export default function Stock(props) {
+export default function Stock({nextPath}) {
 
   var params = useParams();
-  let navigate = useNavigate();
+  var name = params.name;
 
   const [product, setProduct] = useState([]);
   const [stock, setStock] = useState("");
@@ -17,7 +17,7 @@ export default function Stock(props) {
   const [errorMessage, setErrorMessage] = useState("")
 
   useEffect(() => { // UseEffect to fetch product details
-    getProductDetails(params.name).then((response) => {
+    getProductDetails(name).then((response) => {
       setProduct(response);
     });
     setError(true);
@@ -27,10 +27,6 @@ export default function Stock(props) {
   useEffect(() => { // UseEffect to validateStock
     validateStock();
   }, [type, stock]);
-
-  function nextPath(path) {
-    navigate(path);
-  }
 
   function isValue(value) { // Return true if value param is a Number
     if (typeof value !== 'string') {
@@ -67,13 +63,13 @@ export default function Stock(props) {
     setType(event.target.value);
   }
 
-  function submitForm() {
+  async function submitForm() {
     if (!error) {
       if (type === "Stock In") {
-	updateStock(product.name, stock, true);
+	      await updateStock(product.name, stock, true);
         nextPath('/');
       } else {
-        updateStock(product.name, stock, false);
+        await updateStock(product.name, stock, false);
         nextPath('/');
       }
     }

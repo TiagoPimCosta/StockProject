@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { Row, Button, Col, Table, InputGroup, FormControl} from 'react-bootstrap';
 
 import { getProducts } from "../services/productService";
-
 import Product from '../components/Product';
 
-export default function ProductList() {
-  let navigate = useNavigate();
+export default function ProductList({nextPath}) {
 
   const [products, setProducts] = useState([]);
   const [nameFilter, setNameFilter] = useState("");
@@ -18,10 +15,6 @@ export default function ProductList() {
       setProducts(response);
     });
   },[]);
-
-  function nextPath(path) {
-    navigate(path);
-  }
 
   const filteredproducts = nameFilter ? products.filter(product => product.name.toLowerCase().includes(nameFilter.toLowerCase())) 
                                       : products;
