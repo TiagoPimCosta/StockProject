@@ -37,6 +37,8 @@ namespace StockProject
             });
             services.AddSingleton<IBusiness, ProductBusiness>();
             services.AddSingleton<IRepository, ProductRepository>();
+            services.AddSingleton<IBusinessStore, StoreBusiness>();
+            services.AddSingleton<IRepositoryStore, StoreRepository>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
