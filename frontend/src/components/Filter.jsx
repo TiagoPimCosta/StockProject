@@ -2,11 +2,16 @@ import React from "react";
 
 import { Col, InputGroup, FormControl } from "react-bootstrap";
 
-export default function Filters({ changeMethod }) {
+export default function Filter({ property, changeMethod }) {
   return (
     <Col>
       <InputGroup className="mb-3">
-        <InputGroup.Text id="inputGroup-sizing-default">Name</InputGroup.Text>
+        <InputGroup.Text
+          data-testid="labelFilter"
+          id="inputGroup-sizing-default"
+        >
+          {property}
+        </InputGroup.Text>
         <FormControl
           aria-label="Default"
           aria-describedby="inputGroup-sizing-default"
