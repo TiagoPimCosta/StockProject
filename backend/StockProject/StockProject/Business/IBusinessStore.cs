@@ -8,5 +8,6 @@ namespace StockProject.Business
         IEnumerable<StoreDto> GetStores();
         StoreDto GetStore(string name);
         void AddStore (StoreDto storeDto);
+        void RemoveStore (DeleteStoreDto deleteStoreDto);
     }
 }

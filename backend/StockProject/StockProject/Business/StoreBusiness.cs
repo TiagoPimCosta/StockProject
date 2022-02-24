@@ -38,5 +38,10 @@ namespace StockProject.Business
 
             _storeRepository.AddStore(_mapper.Map<Store>(storeDto));
         }
+        public void RemoveStore(DeleteStoreDto deleteStoreDto)
+        {
+            _storeRepository.RemoveStore(_mapper.Map<DeleteStoreDto>(deleteStoreDto));
+
+        }
     }
 }
