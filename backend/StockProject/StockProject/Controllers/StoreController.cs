@@ -67,5 +67,20 @@ namespace StockProject.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete]
+        public IActionResult DeleteStore(DeleteStoreDto deleteStoreDto)
+        {
+            var store = _storeBusiness.GetStore(deleteStoreDto.Name);
+
+            if (store == null)
+            {
+                return NotFound();
+            }
+
+            _storeBusiness.RemoveStore(deleteStoreDto);
+
+            return NoContent();
+        }
     }
 }
