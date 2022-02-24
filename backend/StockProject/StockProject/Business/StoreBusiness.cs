@@ -20,14 +20,14 @@ namespace StockProject.Business
 
         public IEnumerable<StoreDto> GetStores()
         {
-            var stores = _storeRepository.GetStores();
-            return _mapper.Map<IEnumerable<StoreDto>>(stores);
+            return _mapper.Map<IEnumerable<StoreDto>>(_storeRepository.GetStores());
         }
+
         public StoreDto GetStore(string name)
         {
-            var store = _storeRepository.GetStore(name);
-            return _mapper.Map<StoreDto>(store);
+            return _mapper.Map<StoreDto>(_storeRepository.GetStore(name));
         }
+
         public void AddStore(StoreDto storeDto)
         {
             var store = _storeRepository.GetStore(storeDto.Name);
@@ -40,12 +40,26 @@ namespace StockProject.Business
         }
         public void RemoveStore(DeleteStoreDto deleteStoreDto)
         {
+            var store = _storeRepository.GetStore(deleteStoreDto.Name);
+
+            if (store == null)
+            {
+                throw new Exception($"{deleteStoreDto.Name} Store was not found.");
+            }
+
             _storeRepository.RemoveStore(_mapper.Map<DeleteStoreDto>(deleteStoreDto));
 
         }
 
         public void UpdateStore(StoreDto storeDto)
         {
+            var checkStore = _storeRepository.GetStore(storeDto.Name);
+
+            if (checkStore == null)
+            {
+                throw new Exception($"{storeDto.Name} Store was not found.");
+            }
+
             _storeRepository.UpdateStore(_mapper.Map<Store>(storeDto));
         }
     }
