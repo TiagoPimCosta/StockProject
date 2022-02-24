@@ -5,6 +5,7 @@ using StockProject.Business;
 using StockProject.Entities;
 using StockProject.Models;
 using System;
+using System.Linq;
 
 namespace StockProject.Controllers
 {
@@ -25,26 +26,40 @@ namespace StockProject.Controllers
         [HttpGet]
         public IActionResult GetStores()
         {
-            var stores = _storeBusiness.GetStores();
-
-            if (stores == null)
+            try
             {
-                return NotFound();
+                var stores = _storeBusiness.GetStores();
+
+                if (stores.Count() == 0)
+                {
+                    return NotFound("There are no stores.");
+                }
+                return Ok(stores);
             }
-            return Ok(stores);
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("{name}")]
         public IActionResult GetStore(string name)
         {
-            var store = _storeBusiness.GetStore(name);
-
-            if (store == null)
+            try
             {
-                return NotFound();
-            }
+                var store = _storeBusiness.GetStore(name);
 
-            return Ok(store);
+                if (store == null)
+                {
+                    return NotFound($"{name} Store was not found.");
+                }
+
+                return Ok(store);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost("addStore")]
@@ -59,9 +74,10 @@ namespace StockProject.Controllers
 
                 _storeBusiness.AddStore(storeDto);
 
-                _logger.LogInformation($"Store: {storeDto.Name} was added. {DateTime.Now}");
+                _logger.LogInformation($"Store: {storeDto.Name} was added.");
 
-                return Ok($"{storeDto.Name} Store was added with success");
+                //return Ok($"{storeDto.Name} Store was added with success");
+                return Created(storeDto.Name,storeDto);
             }
             catch (Exception ex)
             {
@@ -72,16 +88,18 @@ namespace StockProject.Controllers
         [HttpDelete]
         public IActionResult DeleteStore(DeleteStoreDto deleteStoreDto)
         {
-            var store = _storeBusiness.GetStore(deleteStoreDto.Name);
-
-            if (store == null)
+            try
             {
-                return NotFound();
+                _storeBusiness.RemoveStore(deleteStoreDto);
+
+                _logger.LogInformation($"Store: {deleteStoreDto.Name} was deleted.");
+
+                return NoContent();
             }
-
-            _storeBusiness.RemoveStore(deleteStoreDto);
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("UpdateStore")]
@@ -89,14 +107,9 @@ namespace StockProject.Controllers
         {
             try
             {
-                var checkStore = _storeBusiness.GetStore(storeDto.Name);
-
-                if (checkStore == null)
-                {
-                    return NotFound();
-                }
-
                 _storeBusiness.UpdateStore(storeDto);
+
+                _logger.LogInformation($"Store: {storeDto.Name} was updated.");
 
                 return NoContent();
             }
