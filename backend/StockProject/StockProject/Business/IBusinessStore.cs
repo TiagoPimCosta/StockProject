@@ -9,5 +9,6 @@ namespace StockProject.Business
         StoreDto GetStore(string name);
         void AddStore (StoreDto storeDto);
         void RemoveStore (DeleteStoreDto deleteStoreDto);
+        void UpdateStore(StoreDto storeDto);
     }
 }

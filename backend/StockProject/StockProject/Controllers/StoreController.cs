@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using StockProject.Business;
+using StockProject.Entities;
 using StockProject.Models;
 using System;
 
@@ -26,7 +27,7 @@ namespace StockProject.Controllers
         {
             var stores = _storeBusiness.GetStores();
 
-            if(stores == null)
+            if (stores == null)
             {
                 return NotFound();
             }
@@ -38,7 +39,7 @@ namespace StockProject.Controllers
         {
             var store = _storeBusiness.GetStore(name);
 
-            if(store == null)
+            if (store == null)
             {
                 return NotFound();
             }
@@ -62,7 +63,7 @@ namespace StockProject.Controllers
 
                 return Ok($"{storeDto.Name} Store was added with success");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -81,6 +82,28 @@ namespace StockProject.Controllers
             _storeBusiness.RemoveStore(deleteStoreDto);
 
             return NoContent();
+        }
+
+        [HttpPut("UpdateStore")]
+        public IActionResult UpdateStore(StoreDto storeDto)
+        {
+            try
+            {
+                var checkStore = _storeBusiness.GetStore(storeDto.Name);
+
+                if (checkStore == null)
+                {
+                    return NotFound();
+                }
+
+                _storeBusiness.UpdateStore(storeDto);
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

@@ -35,5 +35,16 @@ namespace StockProject.Repositories
             var filter = Builders<Store>.Filter.Eq(deleteStoreDto => deleteStoreDto.Name, deleteStoreDto.Name);
             StoreCollection.DeleteOne(filter);
         }
+
+        public void UpdateStore(Store store)
+        {
+            var filter = Builders<Store>.Filter.Eq(store => store.Name, store.Name);
+            var update = Builders<Store>.Update.Set(store => store.Country, store.Country)
+                                               .Set(store => store.Address, store.Address)
+                                               .Set(store => store.Activity, store.Activity)
+                                               .Set(store => store.Telephone, store.Telephone)
+                                               .Set(store => store.Nif, store.Nif);
+            StoreCollection.UpdateOne(filter, update);
+        }
     }
 }
