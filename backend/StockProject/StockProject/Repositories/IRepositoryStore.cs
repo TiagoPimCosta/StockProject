@@ -10,5 +10,6 @@ namespace StockProject.Repositories
         Store GetStore(string name);
         void AddStore(Store store);
         void RemoveStore(DeleteStoreDto deleteStoreDto);
+        void UpdateStore(Store store);
     }
 }
