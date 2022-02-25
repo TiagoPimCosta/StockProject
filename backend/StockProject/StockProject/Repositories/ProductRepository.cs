@@ -10,20 +10,16 @@ using System.Threading.Tasks;
 
 namespace StockProject.Repositories
 {
-    public class ProductRepository : IRepository
+    public class ProductRepository : BaseRepository<Product>, IRepository
     {
-
-        public IMongoCollection<Product> ProductCollection { get; set; }
-
-        public ProductRepository(IMongoClient client)
+        public ProductRepository(IMongoClient client) : base(client)
         {
-            var database = client.GetDatabase("StockProject");
-            ProductCollection = database.GetCollection<Product>("Product");
+           
         }
 
         public IEnumerable<Product> GetProducts()
         {
-            var products = ProductCollection.Find(new BsonDocument()).ToList();
+            var products = collection.Find(new BsonDocument()).ToList();
 
             return products;
         
@@ -31,7 +27,7 @@ namespace StockProject.Repositories
 
         public Product GetProduct(string name)
         {
-            var product = ProductCollection.Find(p => p.Name == name).FirstOrDefault();
+            var product = collection.Find(p => p.Name == name).FirstOrDefault();
 
             return product;
 
@@ -39,14 +35,14 @@ namespace StockProject.Repositories
 
         public void AddProduct(Product product)
         {
-            ProductCollection.InsertOne(product);
+            collection.InsertOne(product);
         }
 
         public void UpdateStockProduct(Product product)
         {
             var filter = Builders<Product>.Filter.Eq(product => product.Name, product.Name);
             var update = Builders<Product>.Update.Set(product => product.Quantity, product.Quantity);
-            ProductCollection.UpdateOne(filter, update);
+            collection.UpdateOne(filter, update);
 
 
             //ProductCollection.Find(p => p.Name == product.Name).UpdateOne(product.Quantity);
@@ -54,7 +50,7 @@ namespace StockProject.Repositories
 
         public bool ProductExists(string name)
         {
-            bool productExists = ProductCollection.Find(p => p.Name == name).Any();
+            bool productExists = collection.Find(p => p.Name == name).Any();
 
             return productExists;
             

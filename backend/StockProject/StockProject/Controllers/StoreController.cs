@@ -76,7 +76,7 @@ namespace StockProject.Controllers
 
                 _logger.LogInformation($"Store: {storeDto.Name} was added.");
 
-                //return Ok($"{storeDto.Name} Store was added with success");
+               
                 return Created(storeDto.Name,storeDto);
             }
             catch (Exception ex)
