@@ -4,6 +4,7 @@ using StockProject.Models;
 using StockProject.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace StockProject.Business
 {
@@ -27,10 +28,14 @@ namespace StockProject.Business
         {
             return _mapper.Map<StoreDto>(_storeRepository.GetStore(name));
         }
+        public StoreDto GetStore(Guid guid)
+        {
+            return _mapper.Map<StoreDto>(_storeRepository.GetStore(guid));
+        }
 
         public void AddStore(StoreDto storeDto)
         {
-            var store = _storeRepository.GetStore(storeDto.Name);
+            var store = _storeRepository.GetStore(storeDto.Code);
             if(store != null)
             {
                 throw new Exception($"{storeDto.Name} Store already exist.");
@@ -38,22 +43,22 @@ namespace StockProject.Business
 
             _storeRepository.AddStore(_mapper.Map<Store>(storeDto));
         }
-        public void RemoveStore(DeleteStoreDto deleteStoreDto)
+        public void RemoveStore(Guid code)
         {
-            var store = _storeRepository.GetStore(deleteStoreDto.Name);
+            var store = _storeRepository.GetStore(code).Code;
 
             if (store == null)
             {
-                throw new Exception($"{deleteStoreDto.Name} Store was not found.");
+                throw new Exception();
             }
 
-            _storeRepository.RemoveStore(_mapper.Map<DeleteStoreDto>(deleteStoreDto));
+            _storeRepository.RemoveStore(code);
 
         }
 
         public void UpdateStore(StoreDto storeDto)
         {
-            var checkStore = _storeRepository.GetStore(storeDto.Name);
+            var checkStore = _storeRepository.GetStore(storeDto.Code).Name;
 
             if (checkStore == null)
             {

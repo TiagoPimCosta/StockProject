@@ -35,6 +35,7 @@ namespace StockProject
                 var uri = s.GetRequiredService<IConfiguration>()["MongoUri"];
                 return new MongoClient(uri);
             });
+            services.AddSingleton<IMongoDatabase>(s => s.GetRequiredService<IMongoClient>().GetDatabase("DataBase"));
             services.AddSingleton<IBusiness, ProductBusiness>();
             services.AddSingleton<IRepository, ProductRepository>();
             services.AddSingleton<IBusinessStore, StoreBusiness>();

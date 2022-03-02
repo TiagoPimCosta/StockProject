@@ -12,17 +12,15 @@ namespace StockProject.Repositories
 {
     public class ProductRepository : BaseRepository<Product>, IRepository
     {
-        public ProductRepository(IMongoClient client) : base(client)
+        public ProductRepository(IMongoClient client, IMongoDatabase dbName) : base(dbName)
         {
            
         }
 
         public IEnumerable<Product> GetProducts()
         {
-            var products = collection.Find(new BsonDocument()).ToList();
+            return GetRequest();
 
-            return products;
-        
         }
 
         public Product GetProduct(string name)
@@ -35,7 +33,7 @@ namespace StockProject.Repositories
 
         public void AddProduct(Product product)
         {
-            collection.InsertOne(product);
+            AddOne(product);
         }
 
         public void UpdateStockProduct(Product product)
