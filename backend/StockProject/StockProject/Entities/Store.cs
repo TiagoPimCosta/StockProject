@@ -11,6 +11,9 @@ namespace StockProject.Entities
     {
         [BsonId]
         public ObjectId Id { get; set; }
+        [BsonElement("code")]
+        [BsonRequired]
+        public Guid Code { get; set; }
         [BsonElement("name")]
         [BsonRequired]
         public string Name { get; set; }

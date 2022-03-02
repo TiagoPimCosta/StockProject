@@ -85,14 +85,14 @@ namespace StockProject.Controllers
             }
         }
 
-        [HttpDelete]
-        public IActionResult DeleteStore(DeleteStoreDto deleteStoreDto)
+        [HttpDelete("{code}")]
+        public IActionResult DeleteStore(Guid code)
         {
             try
             {
-                _storeBusiness.RemoveStore(deleteStoreDto);
+                _storeBusiness.RemoveStore(code);
 
-                _logger.LogInformation($"Store: {deleteStoreDto.Name} was deleted.");
+                _logger.LogInformation($"Store: {code} was deleted.");
 
                 return NoContent();
             }

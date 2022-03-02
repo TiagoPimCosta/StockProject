@@ -1,4 +1,5 @@
 ﻿using StockProject.Models;
+using System;
 using System.Collections.Generic;
 
 namespace StockProject.Business
@@ -7,8 +8,9 @@ namespace StockProject.Business
     {
         IEnumerable<StoreDto> GetStores();
         StoreDto GetStore(string name);
+        StoreDto GetStore(Guid code);
         void AddStore (StoreDto storeDto);
-        void RemoveStore (DeleteStoreDto deleteStoreDto);
+        void RemoveStore (Guid code);
         void UpdateStore(StoreDto storeDto);
     }
 }
