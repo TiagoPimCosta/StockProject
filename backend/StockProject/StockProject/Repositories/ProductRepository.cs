@@ -17,8 +17,8 @@ namespace StockProject.Repositories
 
         public ProductRepository(IMongoClient client)
         {
-            var database = client.GetDatabase("StockProject");
-            ProductCollection = database.GetCollection<Product>("Product");
+            var database = client.GetDatabase("stockdb");
+            ProductCollection = database.GetCollection<Product>("stockdb");
         }
 
         public IEnumerable<Product> GetProducts()
@@ -48,8 +48,6 @@ namespace StockProject.Repositories
             var update = Builders<Product>.Update.Set(product => product.Quantity, product.Quantity);
             ProductCollection.UpdateOne(filter, update);
 
-
-            //ProductCollection.Find(p => p.Name == product.Name).UpdateOne(product.Quantity);
         }
 
         public bool ProductExists(string name)

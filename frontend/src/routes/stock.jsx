@@ -69,13 +69,13 @@ export default function Stock(props) {
     setType(event.target.value);
   }
 
-  function submitForm() {
+  async function submitForm() {
     if (!error) {
       if (type === "Stock In") {
-	updateStock(product.name, stock, true);
+	await updateStock(product.name, stock, true);
         nextPath('/');
       } else {
-        updateStock(product.name, stock, false);
+        await updateStock(product.name, stock, false);
         nextPath('/');
       }
     }
